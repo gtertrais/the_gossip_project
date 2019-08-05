@@ -1,9 +1,9 @@
 class DynamicPagesController < ApplicationController
-  def name
+  def landing_page
   end
-  def gossip
+  def show_gossip
     @gossips = Gossip.all
   end
-  def user
+  def show_profile
   end
 end

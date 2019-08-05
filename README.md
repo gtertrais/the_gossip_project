@@ -42,16 +42,16 @@ Provides methods and variables to organize class process and its different phase
 
 
 
-- # ApplicationRecord
-- # City
-- # CommentBi
-- # Comment
-- # GossipToTag
-- # Gossip
-- # Like
-- # PrivateMessage
-- # Tag
-- # User 
+- **ApplicationRecord**
+- **City**
+- **CommentBi**
+- **Comment**
+- **GossipToTag**
+- **Gossip**
+- **Like**
+- **PrivateMessage**
+- **Tag**
+- **User** 
 
 
 

@@ -1,0 +1,11 @@
+      
+      <div class="jumbotron">
+          <h1 class="display-3"><%= User.find(params[:id]).first_name %> <%= User.find(params[:id]).last_name %></h1>
+          <p class="lead"> <%= User.find(params[:id]).description %> </p>
+          <hr class="my-4">
+          <p><%= User.find(params[:id]).email %> </p>
+            <p><%= User.find(params[:id]).age %> years old </p>
+            
+      
+          </p>
+        </div>

@@ -1,0 +1,19 @@
+
+      
+      <div class="jumbotron">
+          <h1 class="display-3"><%= Gossip.find(params[:id]).title %> </h1>
+          <p class="lead"> <%= Gossip.find(params[:id]).content %> </p>
+          <hr class="my-4">
+          <p><%= User.find(Gossip.find(params[:id]).user_id).first_name %>
+            <%= User.find(Gossip.find(params[:id]).user_id).last_name %> </p>
+          <p class="lead">
+              <%= link_to "Link to profile", "../user/#{Gossip.find(params[:id]).user_id}" %>
+      
+          </p>
+        </div>
+      
+
+
+
+  
+          

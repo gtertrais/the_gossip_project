@@ -1,17 +1,36 @@
-
+<% flash.each do |key, value| %>
+<div class="alert alert-success" role="alert">
+  <%= value %>
+</div>
+<% end %>
       
       <div class="jumbotron">
           <h1 class="display-3"><%=@gossip.title %> </h1>
           <p class="lead"> <%= @gossip.content %> </p>
           <hr class="my-4">
-          <p><%= User.find(@gossip.user_id).first_name %>
-            <%= User.find(@gossip.user_id).last_name %> </p>
-          <p class="lead">
-              <%= link_to "Link to profile", "../profiles/#{@gossip.user_id}" %>
-      
-          </p>
+          <p><%= link_to "#{User.find(@gossip.user_id).first_name} #{User.find(@gossip.user_id).last_name}", "../profiles/#{@gossip.user_id}" %></p>
+            <p><%= link_to User.find(@gossip.user_id).city.name, "../cities/#{User.find(@gossip.user_id).city_id}" %></p>
+            <p><%= link_to 'Edit', edit_gossip_path, class: 'btn btn-primary' %>
+            <%= link_to 'Delete', gossip_path(@gossip), method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure you want to delete the article?"} %></p>
         </div>
       
+
+        <%= form_tag url_for(action: 'create'), method: "post", class: "form" do %>
+
+        <%= label_tag 'Title' %>
+        <%= text_field_tag 'title'%>
+        <br /> <br />
+      
+        <%= label_tag 'Content' %>
+        <%= text_area_tag 'content'%>
+        <br /> <br />
+      
+      
+        <%= submit_tag "Create Comment" %>
+      
+      
+      
+        <% end %>
 
 
 

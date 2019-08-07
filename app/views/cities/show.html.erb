@@ -1,16 +1,15 @@
+
       
       <div class="jumbotron">
-          <h1 class="display-3"><%= @user.first_name %> <%= @user.last_name %></h1>
-          <p class="lead"> <%= @user.description %> </p>
+          <h1 class="display-3"><%=@city.name %> </h1>
+          <p class="lead"> <%= @city.zip_code %> </p>
           <hr class="my-4">
-          <p><%= @user.email %> </p>
-            <p><%= @user.age %> years old </p>
-              <p><%= link_to @user.city.name, "../cities/#{@user.city_id}" %></p> </p>
           </div>
+      
 
           <div class="container" style="display: flex; flex-wrap: wrap; justify-content: space-around; padding-top: 100px">
               <% @gossips.each do |gossip| %>
-              <% if gossip.user.id == @user.id %>
+              <% if gossip.user.city_id == @city.id %>
               <div class="card text-white bg-secondary mb-3" style="width: 20rem;">
                   <div class="card-header"><%= User.find(gossip.user_id).first_name %>  <%= User.find(gossip.user_id).last_name %>  </div>
                   <div class="card-body">
@@ -20,3 +19,8 @@
                 <% end %>
                 <% end %>
                 </div>
+
+
+
+  
+          

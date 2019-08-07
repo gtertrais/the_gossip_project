@@ -9,15 +9,27 @@ Like.destroy_all
 City.destroy_all
 GossipToTag.destroy_all
 
-User.create(first_name: 'Anonymous', last_name: 'User', description: 'The author does not wish to be known')
+
+
+#create cities
+city1 = City.create(name: 'Caen', zip_code: "14000")
+city2 = City.create(name: 'Angers', zip_code: "49000")
+city3 = City.create(name: 'Paris', zip_code: "75000")
+city4 = City.create(name: 'Noirmoutier', zip_code: "85330")
+puts "4 cities created"
+
+User.create(first_name: 'Anonymous', last_name: 'User', age: 25, description: 'The author does not wish to be known', city_id: city1.id)
 puts "Anonymous user created"
 
 
 10.times do
   #create user
-  user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Lorem.sentence(word_count: 10, supplemental: true), email: Faker::Internet.email, age: rand(18..80))
+  city = [city1, city2, city3, city4].sample
+  user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Lorem.sentence(word_count: 10, supplemental: true), email: Faker::Internet.email, age: rand(18..80), city_id: city.id)
+ 
   #assign city to user
-  user.city = City.create(name: Faker::Address.city, zip_code: Faker::Address.zip)
+
+
   #create gossip
   gossip1 = Gossip.create(title: Faker::Game.title, content: Faker::Lorem.sentence(word_count: 120, supplemental: true))
   gossip2 = Gossip.create(title: Faker::Game.title, content: Faker::Lorem.sentence(word_count: 120, supplemental: true))

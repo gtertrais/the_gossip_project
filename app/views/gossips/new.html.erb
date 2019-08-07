@@ -1,19 +1,18 @@
-
 <html>
 
-    <% if @gossip.errors.any? %>
-    <div class="alert alert-danger" role="alert">
-      <p>We couldn't create the Gossip because :</p>
-      <ul>
-        <% @gossip.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-    </div>
-    </ul>
+<% if @gossip.errors.any? %>
+<div class="alert alert-danger" role="alert">
+  <p>We couldn't create the Gossip because :</p>
+  <ul>
+    <% @gossip.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
     <% end %>
-    <% end %>
-    
-    <body>
-    <h1 style="padding-bottom: 80px">New Gossip</h1>
+  </ul>
+</div>
+<% end %>
+
+<body>
+  <h1 style="padding-bottom: 80px">New Gossip</h1>
 
 
 
@@ -29,7 +28,7 @@
   <br /> <br />
 
 
-  <%= submit_tag "Create Post" %>
+  <%= submit_tag "Create Gossip" %>
 
 
 

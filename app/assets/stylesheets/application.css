@@ -16,5 +16,15 @@
 
 *{
   text-align: center;
+  text-decoration: none;
 }
  
+body { 
+  padding-top: 65px; 
+}
+
+.form {
+  display: inline-block;
+    text-align: right;
+    padding-left: 40%;
+}

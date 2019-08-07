@@ -9,7 +9,8 @@ Like.destroy_all
 City.destroy_all
 GossipToTag.destroy_all
 
-
+User.create(first_name: 'Anonymous', last_name: 'User', description: 'The author does not wish to be known')
+puts "Anonymous user created"
 
 
 10.times do
@@ -31,7 +32,7 @@ GossipToTag.destroy_all
   gossip2.tags << tag
   #create comments
   comment1 = Comment.new(gossip_id: gossip1.id, content: Faker::Lorem.sentence(word_count: 10, supplemental: true))
-  comment2 = Comment.new(gossip_id: gossip2.id - 1, content: Faker::Lorem.sentence(word_count: 10, supplemental: true))
+  comment2 = Comment.new(gossip_id: gossip2.id, content: Faker::Lorem.sentence(word_count: 10, supplemental: true))
   #assign comments to user
   user.comments << comment1
   user.comments << comment2

@@ -1,22 +1,31 @@
-class ProfilesController < ApplicationController
+# frozen_string_literal: true
+
+class UsersController < ApplicationController
+
 
   def index
     # Méthode qui récupère tous les potins et les envoie à la view index (index.html.erb) pour affichage
   end
 
   def show
-  @gossips = Gossip.all
-  @user = User.find(params[:id])
+    @gossips = Gossip.all
+    @user = User.find(params[:id])
   end
 
   def new
+    @user = User.new
     # Méthode qui crée un potin vide et l'envoie à une view qui affiche le formulaire pour 'le remplir' (new.html.erb)
   end
 
   def create
-    # Méthode qui créé un potin à partir du contenu du formulaire de new.html.erb, soumis par l'utilisateur
-    # pour info, le contenu de ce formulaire sera accessible dans le hash params (ton meilleur pote)
-    # Une fois la création faite, on redirige généralement vers la méthode show (pour afficher le potin créé)
+    city = City.find_or_create_by(name: params[:city], zip_code: params[:zip_code])
+    @user = User.new(first_name: params[:first_name], last_name: params[:last_name], city: city, description: params[:description], age: params[:age], email: params[:email], password: params[:password], city_id: City.last.id) # Méthode qui créé un potin à partir du contenu du formulaire de new.html.erb, soumis par l'utilisateur
+    if @user.save # essaie de sauvegarder en base @gossip
+      flash[:success] = 'The Profile was successfully created'
+      redirect_to gossips_path # si ça marche, il redirige vers la page d'index du site
+    else
+      render :new # sinon, il render la view new (qui est celle sur laquelle on est déjà)
+    end
   end
 
   def edit
@@ -33,4 +42,8 @@ class ProfilesController < ApplicationController
     # Méthode qui récupère le potin concerné et le détruit en base
     # Une fois la suppression faite, on redirige généralement vers la méthode index (pour afficher la liste à jour)
   end
+
+
+
+
 end

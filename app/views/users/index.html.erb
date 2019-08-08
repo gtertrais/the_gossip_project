@@ -7,9 +7,9 @@
 <% end %>
 
 <body>
-  <h1>The Gossip Project</h1>
+  
 
-<h2 style="padding-bottom: 80px">Welcome <% if current_user %> <%= current_user.first_name.capitalize %> <% end%> </h2>
+<h1 style="padding-bottom: 80px">Welcome to The Gossip Project</h1>
 
 <%= button_to "Create a new Gossip", "gossips/new", :id => "open-contacts-dialog-btn",
       :class => "btn btn-primary btn-lg", :method => :get %>

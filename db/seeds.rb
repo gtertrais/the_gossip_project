@@ -18,14 +18,14 @@ city3 = City.create(name: 'Paris', zip_code: "75000")
 city4 = City.create(name: 'Noirmoutier', zip_code: "85330")
 puts "4 cities created"
 
-User.create(first_name: 'Anonymous', last_name: 'User', age: 25, description: 'The author does not wish to be known', city_id: city1.id)
+User.create(first_name: 'Anonymous', last_name: 'User', age: 25, email: 'coucou@gmai.com', description: 'The author does not wish to be known', city_id: city1.id, password: 'helssalo')
 puts "Anonymous user created"
 
 
 10.times do
   #create user
   city = [city1, city2, city3, city4].sample
-  user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Lorem.sentence(word_count: 10, supplemental: true), email: Faker::Internet.email, age: rand(18..80), city_id: city.id)
+  user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Lorem.sentence(word_count: 10, supplemental: true), email: Faker::Internet.email, age: rand(18..80), city_id: city.id,  password: 'helledsfo')
  
   #assign city to user
 

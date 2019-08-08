@@ -8,21 +8,26 @@
           <h1 class="display-3"><%=@gossip.title %> </h1>
           <p class="lead"> <%= @gossip.content %> </p>
           <hr class="my-4">
-            <p><%= link_to "#{User.find(@gossip.user_id).first_name} #{User.find(@gossip.user_id).last_name}", "../profiles/#{@gossip.user_id}" %></p>
+            <p><%= link_to "#{User.find(@gossip.user_id).first_name} #{User.find(@gossip.user_id).last_name}", "../users/#{@gossip.user_id}" %></p>
             <p><%= link_to User.find(@gossip.user_id).city.name, "../cities/#{User.find(@gossip.user_id).city_id}" %></p>
-            <p><%= link_to 'Edit', edit_gossip_path, class: 'btn btn-primary' %>
-                    <%= link_to 'Delete', gossip_path(@gossip), method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure you want to delete the article?"} %></p>
+            <p><% if current_user.id == @gossip.user_id %> 
+              <%= link_to 'Edit', edit_gossip_path, class: 'btn btn-primary' %>
+              <%= link_to 'Delete', gossip_path(@gossip), method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure you want to delete the article?"} %>
+              <%end%></p>
         </div>
       
 
         <ul class="list-group">
-            <li class="list-group-item">Comments</li>
-            <li><%= link_to 'New Comment', "/gossips/#{@gossip.id}/comments/new", class: 'btn btn-primary' %></li>
+            <h2 class="list-group-item">Comments</h2> <br>
+            <li><%= link_to 'New Comment', "/gossips/#{@gossip.id}/comments/new", class: 'btn btn-primary btn-sm' %></li> <br>
                 <% @comments.each do |comment| %>
                 <% if @gossip.id == comment.gossip_id %>
-            <li class="list-group-item list-group-item-primary"><%= comment.content %>
-              <p><%= link_to 'Edit', "/gossips/#{@gossip.id}/comments/#{comment.id}/edit", class: 'btn btn-primary' %>
-                <%= link_to 'Delete', gossip_path(@gossip), method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure you want to delete the article?"} %></p>
+            <li class="list-group-item list-group-item-primary"><%= User.find(comment.user_id).first_name %> Commented : <br><%= comment.content %> 
+              <p> <br><% if current_user.id == @gossip.user_id || current_user.id == comment.user_id%> 
+                <%= link_to 'Edit', "/gossips/#{@gossip.id}/comments/#{comment.id}/edit", class: 'btn btn-primary btn-sm' %>
+                <%= link_to 'Delete', "/gossips/#{@gossip.id}/comments/#{comment.id}", method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: "Are you sure you want to delete the article?"} %>
+              <%end%>
+              </p>
             
             </li>
             <% end %>

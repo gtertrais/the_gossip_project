@@ -1,6 +1,7 @@
-# frozen_string_literal: true
-
 class GossipsController < ApplicationController
+  before_action :require_login, only: [:new, :create, :edit, :destroy]
+
+
   def index
     @gossips = Gossip.all
     # Méthode qui récupère tous les potins et les envoie à la view index (index.html.erb) pour affichage
@@ -18,14 +19,13 @@ class GossipsController < ApplicationController
   end
 
   def create
-    @gossip = Gossip.new(title: params[:title], content: params[:content], user_id: User.find_by_first_name('Anonymous').id) # On trouve l'id_user de anonymous qui est cree avec db:seed automatiquement
-
-    if @gossip.save # essaie de sauvegarder en base @gossip
-      flash[:success] = 'The Gossip was successfully created'
-      redirect_to gossips_path # si ça marche, il redirige vers la page d'index du site
-    else
-      render :new # sinon, il render la view new (qui est celle sur laquelle on est déjà)
-    end
+ @gossip = Gossip.new(title: params[:title], content: params[:content], user: User.find_by(id: session[:user_id]))
+  if @gossip.save
+    flash[:success] = "Gossip created!"
+    redirect_to root_path
+  else
+    render :new
+  end
   end
 
   def edit
@@ -56,5 +56,13 @@ class GossipsController < ApplicationController
   def gossip_params
     params.require(:gossip).permit(:title, :content)
   end
+
+  def require_login
+    unless session[:user_id]
+      flash[:error] = "You must be logged in to access this section"
+      redirect_to new_session_path # halts request cycle
+    end
+  end
+
 
 end

@@ -2,7 +2,7 @@
 
 
 
->Created on 05/08/2019 by Antoine Delarchand, Adrien  Audebert and Gaspard Tertrais.
+>Created on 08/08/2019 by Gaspard Tertrais.
 
 
 
@@ -14,7 +14,7 @@ To test the program please run :
 bundle install
 rails db:create
 rails db:migrate
-rails db:seed
+(rails db:seed)
 rails server
 
 Then, open your navigator and go to "http://localhost:3000/"
@@ -28,8 +28,8 @@ Then, open your navigator and go to "http://localhost:3000/"
 - **db/seed** : Test and explaination
 - **db/migrate**: All the migrations
 - **app/models** : All the models
-- **app/views/dynamic_pages** : All the dynamic pages
-- **app/views/static_pages** : All the static pages
+- **app/helpers** : All the helpers
+- **app/views** : All the views
 - **Gemfile, Gemfile.lock** : Gem and dependencies. See below.
 
 
@@ -70,6 +70,7 @@ ruby '2.5.1'
 
 gem 'faker'
 gem 'table_print'
+gem 'bcrypt', '~> 3.1.7'
 
 
 gem 'rails', '~> 5.2.3'

@@ -1,8 +1,5 @@
-# frozen_string_literal: true
-
 class UsersController < ApplicationController
-
-
+    
   def index
     # Méthode qui récupère tous les potins et les envoie à la view index (index.html.erb) pour affichage
   end
@@ -19,7 +16,7 @@ class UsersController < ApplicationController
 
   def create
     city = City.find_or_create_by(name: params[:city], zip_code: params[:zip_code])
-    @user = User.new(first_name: params[:first_name], last_name: params[:last_name], city: city, description: params[:description], age: params[:age], email: params[:email], password: params[:password], city_id: City.last.id) # Méthode qui créé un potin à partir du contenu du formulaire de new.html.erb, soumis par l'utilisateur
+    @user = User.new(first_name: params[:first_name], last_name: params[:last_name], city: city, description: params[:description], age: params[:age], email: params[:email], password: params[:password],password_confirmation: params[:password_confirmation], city_id: City.last.id) # Méthode qui créé un potin à partir du contenu du formulaire de new.html.erb, soumis par l'utilisateur
     if @user.save # essaie de sauvegarder en base @gossip
       flash[:success] = 'The Profile was successfully created'
       redirect_to gossips_path # si ça marche, il redirige vers la page d'index du site

@@ -1,4 +1,5 @@
 class GossipsController < ApplicationController
+  include GossipsHelper
   before_action :require_login, only: [:new, :create, :edit, :destroy]
 
 
@@ -19,7 +20,7 @@ class GossipsController < ApplicationController
   end
 
   def create
- @gossip = Gossip.new(title: params[:title], content: params[:content], user: User.find_by(id: session[:user_id]))
+  @gossip = Gossip.new(title: params[:title], content: params[:content], user: current_user)
   if @gossip.save
     flash[:success] = "Gossip created!"
     redirect_to root_path

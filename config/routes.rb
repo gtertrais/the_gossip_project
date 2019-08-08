@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
   resources :gossips do
     resources :comments
+    resources :likes
   end
   resources :contact
   resources :team

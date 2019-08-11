@@ -27,8 +27,8 @@
                     <%= button_to 'Unlike', gossip_like_path(gossip, pre_like), method: :delete %>
                 <% else %>
                     <%= button_to 'Like', gossip_likes_path(gossip), method: :post %>
-                <% end %></p>
                 <% end %>
+                <% end %></p>
             <p><%= gossip.likes.count %> <%= (gossip.likes.count) == 1 ? 'Like' : 'Likes'%></p>
           </div>
       

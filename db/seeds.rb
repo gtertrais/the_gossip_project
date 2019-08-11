@@ -17,24 +17,21 @@ city3 = City.create(name: 'Paris', zip_code: "75000")
 city4 = City.create(name: 'Noirmoutier', zip_code: "85330")
 puts "4 cities created"
 
-User.create(first_name: 'Anonymous', last_name: 'User', age: 25, email: 'coucou@gmai.com', description: 'The author does not wish to be known', city_id: city1.id, password: 'helssalo')
-puts "Anonymous user created"
 
 
 10.times do
   #create user
   city = [city1, city2, city3, city4].sample
-  user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Lorem.sentence(word_count: 10, supplemental: true), email: Faker::Internet.email, age: rand(18..80), city_id: city.id,  password: 'helledsfo')
+  user = User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Lorem.sentence(word_count: 10, supplemental: true), email: Faker::Internet.email, age: rand(18..80), city_id: city.id,  password: 'password')
  
   #assign city to user
 
 
   #create gossip
-  gossip1 = Gossip.create(title: Faker::Game.title, content: Faker::Lorem.sentence(word_count: 120, supplemental: true))
-  gossip2 = Gossip.create(title: Faker::Game.title, content: Faker::Lorem.sentence(word_count: 120, supplemental: true))
+  gossip1 = Gossip.create(title: Faker::Game.title, content: Faker::Lorem.sentence(word_count: 120, supplemental: true), user_id: user.id)
+  gossip2 = Gossip.create(title: Faker::Game.title, content: Faker::Lorem.sentence(word_count: 120, supplemental: true), user_id: user.id)
  #assign gossips to user
-  user.gossips << gossip1
-  user.gossips << gossip2
+  
   #create tags
   tag = Tag.create(title: "##{Faker::Verb.base}")
   tag.save
@@ -63,8 +60,6 @@ puts "Anonymous user created"
     end
   
   user.save
-
-  #create private message from current user to previous user
 
 end
 puts "10 users created"

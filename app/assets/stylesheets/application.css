@@ -20,7 +20,7 @@
 }
  
 body { 
-  padding-top: 65px; 
+  padding-top: 55px; 
 }
 
 .form {
@@ -28,3 +28,4 @@ body {
     text-align: right;
     padding-left: 40%;
 }
+

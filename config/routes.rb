@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+    resources :sessions, only: [:new, :create, :destroy]
     resources :gossips do
     resources :comments
     resources :likes
@@ -7,7 +8,7 @@ Rails.application.routes.draw do
   resources :team
   resources :users
   resources :cities
-  resources :sessions, only: [:new, :create, :destroy]
+  
   root to: 'gossips#index' 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

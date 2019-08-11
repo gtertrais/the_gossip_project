@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @user = User.new(first_name: params[:first_name], last_name: params[:last_name], city: city, description: params[:description], age: params[:age], email: params[:email], password: params[:password],password_confirmation: params[:password_confirmation], city_id: City.last.id) # Méthode qui créé un potin à partir du contenu du formulaire de new.html.erb, soumis par l'utilisateur
     if @user.save # essaie de sauvegarder en base @gossip
       flash[:success] = 'The Profile was successfully created'
-      redirect_to gossips_path # si ça marche, il redirige vers la page d'index du site
+      redirect_to  gossips_path # si ça marche, il redirige vers la page d'index du site
     else
       render :new # sinon, il render la view new (qui est celle sur laquelle on est déjà)
     end

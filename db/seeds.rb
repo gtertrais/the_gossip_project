@@ -2,7 +2,6 @@ require 'faker'
 
 User.destroy_all
 Gossip.destroy_all
-PrivateMessage.destroy_all
 Tag.destroy_all
 Comment.destroy_all
 Like.destroy_all
@@ -66,13 +65,12 @@ puts "Anonymous user created"
   user.save
 
   #create private message from current user to previous user
-PrivateMessage.create(recipient_id: user.id - 1, sender_id: user.id, content: Faker::Lorem.sentence(word_count: 20, supplemental: true ))
+
 end
 puts "10 users created"
 puts "10 cities created"
 puts "20 gossips created"
 puts "10 tags created"
-puts "10 private messages created"
 puts "20 comments created"
 puts "20 random likes created"
 puts "All values has been created!"

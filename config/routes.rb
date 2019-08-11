@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
     resources :sessions, only: [:new, :create, :destroy]
     resources :gossips do
-    resources :comments
-    resources :likes
+      resources :comments
+      resources :likes
   end
+  resources :conversations do
+    resources :messages
+   end
   resources :contact
   resources :team
   resources :users

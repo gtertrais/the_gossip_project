@@ -17,15 +17,30 @@
 *{
   text-align: center;
   text-decoration: none;
+
 }
  
 body { 
   padding-top: 55px; 
+  align-content: center;
 }
 
 .form {
   display: inline-block;
     text-align: right;
     padding-left: 40%;
+}
+
+.row{
+  margin-top: 160px;
+  width: 100%;
+  color: #333333;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 10px 0;
+  align-items: center;
+  justify-content: space-around;
+  display: flex;
+  float: none;
 }
 
